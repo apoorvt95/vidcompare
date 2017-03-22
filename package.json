@@ -1,0 +1,18 @@
+{
+  "name": "vidcompare",
+  "version": "1.0.0",
+  "description": "video comparison",
+  "main": "server.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Apoorv Tomar",
+  "license": "MIT"
+}
