@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VidCompare</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+<div class="login-page">
+  <div class="form">
+    
+    <form class="login-form" ng-controller="AppCtrl">
+      <input ng-model="vimeo" type="text" placeholder="Enter Vimeo video URL"/>
+
+      <input ng-model="youtube" type="text" placeholder="Enter Youtube video URL"/>
+      <button id="b1">Compare Videos</button>
+    </form>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html>

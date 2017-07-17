@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+	<title>VidCompare</title>
+</head>
+<link rel="stylesheet" href="stylesheets/style.css">
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '289636201467967',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="login-page">
+  <div ng-app="myApp" class="form" >
+    
+    <form class="login-form" ng-controller="AppCtrl" action="redirect.html?you=youtube&vim=vimeo">
+      <input name="vimeo" type="text" placeholder="Enter Vimeo video URL"/>
+      <input name="youtube" type="text" placeholder="Enter Youtube video URL"/>
+      <input type="submit" value="Compare Video" onmouseover="" style="cursor: pointer;">
+    </form>
+    
+  </div>
+</div>
+<script>
+angular.module("myApp",[])
+.controller("AppCtrl",function($scope){
+	
+
+});
+function redirect(){
+		
+        location.href = 'redirect.html/?you=youtube&vim=vimeo';
+    };
+</script>
+</body>
+</html>

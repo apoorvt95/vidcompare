@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VidCompare</title>
+</head>
+<link rel="stylesheet" href="https://cdn.plyr.io/2.0.11/plyr.css">
+<script src="https://cdn.plyr.io/2.0.11/plyr.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '289636201467967',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+
+</script>
+<div id='fb' style="float:right; margin: 2%">
+
+</div>
+<div class="container">
+  <div class="row" style="margin-top: 1%">
+
+  <div class="row" style="margin-top: 20%">
+    <div class="col-sm-6" >
+    <div id='1a' data-type="youtube"  style="border:2px solid"></div>
+    </div>
+    <div class="col-sm-6">
+    <div id='1b' data-type="vimeo"  style="border:2px solid"></div>
+  </div>
+  </div>
+  <div class="row" style="margin-top: 10%">
+    <div class="col-sm-6" style="text-align:center">Youtube</div>
+    <div class="col-sm-6" style="text-align:center">Vimeo</div>
+  </div>
+</div>
+<script>
+document.getElementById("fb").innerHTML ='<img src="http://graph.facebook.com/id/picture?type=square"><text>Hello response.<text>';
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+var youtube = getParameterByName('youtube');
+var url = youtube;
+var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+if(videoid != null) {
+
+} else { 
+    console.log("The youtube url is not valid.");
+}
+var vimeo = getParameterByName('vimeo');
+function GetVimeoIDbyUrl(url) {
+  var id = false;
+  var request = new XMLHttpRequest();
+  request.open('GET', 'https://vimeo.com/api/oembed.json?url='+url , false);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var response = JSON.parse(request.responseText);
+      if(response.video_id) {
+        id = response.video_id;
+      }
+    }
+  };
+  request.send();
+  return id;
+}
+var videoid2=GetVimeoIDbyUrl(vimeo);
+document.getElementById('1a').setAttribute('data-video-id', videoid[1]);
+document.getElementById('1b').setAttribute('data-video-id', videoid2);
+
+</script>
+<script>plyr.setup();</script>
+</body>
+</html>
